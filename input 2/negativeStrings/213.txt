@@ -1,0 +1,13 @@
+--noOpt
+--77exec=
+--deBug
+--oPt=
+--f77flAgs=
+--noaRch
+--help-fcompilEr
+--arCh=
+--optdebug
+--help-Fcompiler
+--opt
+--F77exec=
+--f77exEc=

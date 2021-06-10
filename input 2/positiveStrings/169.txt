@@ -1,0 +1,12 @@
+\N Table
+\l Table
+\m Table
+\o Table
+\O Table
+\P Table
+\9 Table
+\0 Table
+\/ Table
+\  Table
+\\ Table
+\t Table

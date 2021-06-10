@@ -1,0 +1,8 @@
+Foo: 0\!!s, 0\!0min\nFoo: 0\!!s, 0!0min\nFoo: !\!!s, 0!0miN\n
+Foo: 0\!!s, 0\.0min\NFoo: 0\!!s, 0!0min\nFoo: !\!!s, 0!0min\n
+Foo: 0\!!s, 0\!0min\!Foo: 0\!!s, 0!0min\nFoo: !\!!s, 0!0min\n
+Foo: 0\!!s, 0\!0min\nFoo: 0\!!s, 0!0min\nFoo: !!!s, 0!0min\n
+Foo: 0\!!s, 0\.0min\nFoo: 0\!!s, 0!0min\nFoo: !\!!s, 0!0miN\n
+Foo: 0\!!s, 0\!0min\NFoo: 0\!!s, 0!0min\nFoo: !\!!s, 0!0min\n
+Foo: 0\!!s, 0\!0min\nFoo: 0\!!s, 0!0min\NFoo: !\!!s, 0!0min\n
+Foo: 0\!!s, 0\!0min\0Foo: 0\!!s, 0!0min\nFoo: !\!!s, 0!0min\n

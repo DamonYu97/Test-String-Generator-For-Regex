@@ -1,0 +1,17 @@
+    geom = models4PolygonField\4*\\n    objects = modeLs4GeoManager\\
+    geom = models4PolygOnField\\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\\\n    objects = modeLs4GeoManager\\
+    gEom = models4PolygonField\\\n    objects = models4GeoManager\\
+    geom = moDels4PolygonField\\\n    objects = models.GeoManager\\
+    geom = models4PolygonField\\\n    objects = models.GeoMaNager\\
+    geom = models4PolygonField\\\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\^)\\n    objects = models.GeoManager\\
+    gEom = models.PolygonField\\\n    objects = models4GeoManager\\
+    g4om = models4PolygonField\\\n    objects = models4GeoManager\\
+    geom = moDels4PolygonField\\\n    objects = models4GeoManager\\
+    geom = models4PolygOnField\\\n    objects = models.GeoManager\\
+    geom = models4PolygonField\^)\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\)\\n    objects = models4GeoManager\\
+    geom = mo4els4PolygonField\\\n    objects = models4GeoManager\\
+    geom = models4PolygonFielD\\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\\\n    objects = models4GeoMaNager\\

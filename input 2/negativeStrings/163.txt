@@ -1,0 +1,23 @@
+\.hg
+\AN
+\.H
+\AT
+\AV
+\Aa
+\A
+\.I
+\AH
+\Ahg
+\A hg
+\A0
+\.G
+\.A
+\.C
+\AA
+\.N
+\AC
+A 
+\.V
+\AI
+\.T
+\AG

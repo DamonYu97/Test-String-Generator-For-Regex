@@ -1,0 +1,15 @@
+\4 4*rn
+\4 ? rn
+\A 4*rn
+\o rn
+  rn
+\  ? rN
+\  rN
+\a ? rn
+\ rn
+\4 rn
+\k rn
+\4 rN
+\a rn
+\0 rn
+\A rn

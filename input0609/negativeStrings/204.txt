@@ -1,0 +1,4 @@
+Foo: 0\!!s, 0\!0minnfoo: 0\!.s, 0!0minnFoo: !\!!s, 0!0minn
+Foo: 0\!!s, 0\!0minnFoo: 0\!!s, 0!0minnFoo: !\!!s, 0.0mInn
+Foo: 0\!!s, 0\!0minnFoo: 0\!!s, 0!0minnfoo: !\.!s, 0!0minn
+Foo: 0\!!s, 0\!0minnfoo: 0\!!s, 0!0minnFoo: !\!!s, 0!0minn

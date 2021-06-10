@@ -1,0 +1,15 @@
+\\?.htm
+\\/.htm
+\\<.htm
+\\\"\4.htm
+\\".htm
+\\4.htmL
+\\4.htmll
+\\>.htm
+\\4+.hTm
+A\\4.htm
+\\:.htm
+\\*.htm
+\\.htm
+\\|.htm
+\\"4.htm

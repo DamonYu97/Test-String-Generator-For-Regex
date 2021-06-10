@@ -1,0 +1,17 @@
+range ! ! ! 0 a
+range ! ! ! 0 !
+range ! !+ ! A 0
+range  ! ! 0 0
+ranGe ! ! ! 0 0-9
+range !  ! 0 0
+range ! ! !+ 0 A
+ranGe ^  ! ! 0 0
+range ! ! !  0
+range ! ! ! 0 
+ranGe ! ! ^  0 0
+ranGe ! ! ! 0 0
+range ! !  0 0
+range . ! ! 0 A
+range ! ! ! a 0
+range ^  ! !+ 0 0
+range ! ! ! 0 0+

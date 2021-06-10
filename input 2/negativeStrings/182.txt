@@ -1,0 +1,22 @@
+http://imdb\.com/tItle/tt0000000/quotes
+http://imdb\ com/title/tT0000000/quotes
+http://imdb\ com/tItle/tt1111111/quotes
+http://imdb\ com/title/tt000000a/quotes
+http://imdb\ com/tItle/tt0000000/quotes
+http://imdb\ com/title/tt/quotes
+httP://imdb\ com/title/tt0000000/quotes
+http://imdb\ com/title/tt       /quOtes
+http://imdb\ com/title/tT       /quotes
+http:// *imdb\ com/title/tt0000000/quOtes
+http://imdb\ com/tItle/tt       /quotes
+httP://imdb\ com/title/tt       /quotes
+http://imdb\ com/t tle/tt0000000/quotes
+http://imdb\ com/title/tt       /quotes
+http://imdb\ com/title/tt00000000/quotes
+http://imdb\ com/title/tt0-90-90-90-90-90-90-9/quotes
+http://imDb\ com/title/tt0000000/quotes
+httP://imdb\ com/title/tt0-90-90-90-90-90-90-9/quotes
+http://imdb\ com/title/tt0000000/quOtes
+http://imdb\ com/title/tt000000/quotes
+http://imdb\ com/title/tt000000A/quotes
+http://imDb\ com/title/tt0-90-90-90-90-90-90-9/quotes

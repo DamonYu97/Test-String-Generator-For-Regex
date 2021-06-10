@@ -1,0 +1,18 @@
+include '4'
+from 0 cimport
+cdef extern from '4'
+from 9 cimport
+cimport 9b
+cimport Ab
+cimport zb
+from a cimport
+cimport ab
+from A cimport
+cimport _b
+cimport .b
+cimport 0b
+from z cimport
+from . cimport
+cimport Zb
+from _ cimport
+from Z cimport

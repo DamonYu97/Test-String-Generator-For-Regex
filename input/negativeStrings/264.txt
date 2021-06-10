@@ -1,0 +1,13 @@
+usd a!00
+usd !00
+usd +-0!00
+usd A!00
+usd ,0!00
+usD 0!00
+usd 0!A0
+usd 0!a0
+usd !0!00
+usd A0!00
+usd 0!0a
+usd 0!0A
+usd a0!00

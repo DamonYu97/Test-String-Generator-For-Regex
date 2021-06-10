@@ -1,0 +1,38 @@
+1 .COM
+a-zA-Z0-9 COM
+0.mIl
+0+.com
+0.cOm
+0 COM
+Aa-zA-Z0-9- .COM
+0.MiL
+A.mIl
+a-zA-Z0-9-+.COM
+1.cCOM
+a-zA-Z0-9 .COM
+ .COM
+.COM
+0.oRg
+1a-zA-Z0-9- .COM
+A.oRg
+0-?.COM
+0COM
+0.NeT
+1.OrG
+0.cCOM
+a-zA-Z0-9.cCOM
+0-+.COM
+a-zA-Z0-9.NeT
+0.EdU
+a-zA-Z0-9.EdU
+0.nEt
+0a-zA-Z0-9- .COM
+1.CoM
+0+.COM
+0.eDu
+0.CoM
+0.OrG
+A.EdU
+0 .COM
+0.coCOM
+0 com

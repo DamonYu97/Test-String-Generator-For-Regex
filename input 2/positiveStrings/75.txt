@@ -1,0 +1,11 @@
+a:\A
+a
+AAA
+AAA\A
+z:\A
+0
+A
+A\A
+Z:\A
+A:\A
+A\A\A

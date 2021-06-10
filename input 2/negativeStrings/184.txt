@@ -1,0 +1,53 @@
+range ! ! ! 0 A
+range ! ! ^  1 0
+range ! ! !0 0
+range ! ^  ! 0 0
+range ! !   0 0
+range ! !! 0 0
+ranGe ! ! ^  0 0
+ranGe ! ! ! 1 0
+range ! !  0 0
+range ! ! ! ! 0-9
+range ! ! ! ! 0
+range ! ! ! 0+ 1
+range ! ! ! !+ 0
+range ! ! ! 0 !
+range  ! ! 0 0
+ranGe ! ! ! 0 0-9
+range !  ! 0 0
+ranGe ^  ! ! 0 0
+range ! ! !  0
+range ! !+ ! 0 !
+ranGe ! ^  ! 0 0
+range ! ! ^  0 !
+range !   ! 0 0
+range ! ! ! 0 0-9
+range ! ! ! 00
+range ! ! ! a 0
+range ! ! ! 0+ 0
+range ^  ! ! ! 0
+range ! ! ! A 0
+range ! ! ! 0 
+range ! ! . 0 a
+range ! ! ! 0-9 !
+range ^  ! ! 0 0
+range ! ^  ! 0 !
+range ! ! . ! 0
+ranGe ! ! ! 0+ 0
+range ! ! ! 0 0+
+ranGe ! ! ! ! 0
+range ! !+ ^  0 0
+range ! ! ^  0 0
+ranGe ! ! ! 0-9 0
+range ! ! ! 0 a
+range ! ^  ! 0 1
+range !! ! 0 0
+range ! ^  !+ 0 0
+range ! !+ ! 0 a
+range   ! ! 0 0
+range ^  ! ! 0 1
+range ^  ! ! 0+ 0
+ranGe ! ! ! 0 0
+range ! ! ! 0-9+ 0
+range ! ! . 0 0-9
+range ! ! ! 0-9 0

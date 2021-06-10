@@ -1,0 +1,14 @@
+a-za-Z_0
+A0+
+ 0
+a-zA-Z_0
+00
+_0+
+00+
+Ba-zA-Z0-9_
+Aa-zA-z0-9_
+Aa-zA-Z0-9_+
+Aa-zA-Z0-9_
+A
+A 
+a-zA-Z_0+

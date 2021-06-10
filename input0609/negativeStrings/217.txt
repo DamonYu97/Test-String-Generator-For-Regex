@@ -1,0 +1,9 @@
+    geom = models4PolygonFielD\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\^)\n    objects = models4GeoManager\\
+    geom = moDels4PolygonField\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\\n    objects = models4GeoMaNager\\
+    geom = models4PolygonField\\\n    objects = models4GeoManager\\
+    gEom = models4PolygonField\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\\n    objects = modelS4GeoManager\\
+    geom = models4PolygOnField\\n    objects = models4GeoManager\\
+    geom = models4PolygonField\\n    objects = models4GeoMa0ager\\
