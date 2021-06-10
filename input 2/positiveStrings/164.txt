@@ -1,5 +1,0 @@
-lib/lib\4so\4
-lib/lib\4so\444
-lib/lib\4so\44
-lib/lib4\4so\4
-lib/lib44\4so\4

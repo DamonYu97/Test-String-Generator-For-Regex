@@ -1,3 +1,0 @@
-#define 0^0//
-#define 0t0//
-#define 0 0//

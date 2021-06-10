@@ -1,8 +1,0 @@
-A:Aa-zA-Z0-9_)-
-A:Aa-zA-z0-9_)-
-A:A:A
-A:0
-4
-Aa-zA-z0-9_)-
-Aa-zA-Z0-9_)-
-A:A)

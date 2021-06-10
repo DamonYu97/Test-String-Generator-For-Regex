@@ -1,4 +1,0 @@
-\: -A  -j ACCEPT -p icmp -s 192!168!11!0/24
-\0 -A ! -j ACCEPT -p icmp -s 192!168!11!0/24
-\0 -A !! -j ACCEPT -p icmp -s 192!168!11!0/24
-\0 -A  -j ACCEPT -p icmp -s 192!168!11!0/24

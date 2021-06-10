@@ -1,3 +1,0 @@
-color ^ #00a-fA-F0-9a-fA-F0-900
-color ^ #000000
-colOr ^ #000000

@@ -1,3 +1,0 @@
-QtGui\!QApplication!translate\!, , None, QtGui\!QApplication\!UnicodeUTF8\
-QtGui\!QApplication!translate\, , None, QtGui\!QApplication\!UnicodeUTF8\
-QtGui\!QApplication!translate\, !, None, QtGui\!QApplication\!UnicodeUTF8\

@@ -1,9 +1,0 @@
-usd 0!90
-usd 9!00
-usd -0!00
-usd 0!01
-usd 0!00
-usd 0!10
-usd +0!00
-usd 0!09
-usd 1!00
