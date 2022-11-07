@@ -37,11 +37,9 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 				continue;
 			} else {
 				numRunningMutants++;
-				AllMutators.mutator.setTotalCount(count + AllMutators.mutator.getTotalCount());
 				return new MutantForMutParallelCollector(mutants.next());
 			}
 		}
-		AllMutators.mutator.setTotalCount(count + AllMutators.mutator.getTotalCount());
 		return null;
 	}
 
@@ -55,7 +53,7 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 		Automaton regexAut = regex.toAutomaton();
 		String baseString = regexAut.getShortestExample(true);
 		char nicerChar = getNicerChar(baseString);
-		
+
 		DasManager dasManager = new DasManager(regex);
 		MutantForMutParallelCollector mutant = null;
 		Set<MutTh> mutThs = new HashSet<MutTh>();
@@ -77,7 +75,7 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 			dsS.add(ds, dac.da.getMutants());
 		}
 	}
-	
+
 	private char getNicerChar(String s) {
 		if (s == null) {
 			return '^';
@@ -87,7 +85,7 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 		boolean[] special = new boolean[14];
 		//Initialise special
 		for (int i = 0; i < special.length; i++) {
-			special[i] = false; 
+			special[i] = false;
 		}
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
@@ -101,7 +99,7 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 				}
 			}
 		}
-		
+
 		if (!hasLetter) {
 			return 'A';
 		} else if (!hasDigit) {
@@ -114,7 +112,7 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 			}
 		}
 		return '^';
-		
+
 	}
 }
 

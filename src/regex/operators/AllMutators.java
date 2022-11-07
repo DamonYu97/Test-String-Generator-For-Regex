@@ -22,7 +22,7 @@ import regex.utils.JoinedIterator;
 import regex.utils.JoinedRandomIterator;
 
 /**
- * 
+ *
  * @modified by Yu Lilin at 2020.03.19
  *
  */
@@ -59,7 +59,7 @@ public class AllMutators extends RegexMutator {
 		//add(WrongPrecedenceClosure.mutator);
 		add(UnionRestriction.mutator);
 	}
-	
+
 	public void init() {
 		allMutators.clear();
 		add(CharacterClass2Group.mutator);
@@ -102,111 +102,143 @@ public class AllMutators extends RegexMutator {
 		JoinedRandomIterator<MutatedRegExp> joinedRandomIterator = new JoinedRandomIterator<MutatedRegExp>(allIterator);
 		return joinedRandomIterator;
 	}
-	
-	public Iterator<MutatedRegExp> secondMutate(MutatedRegExp mut) {
-		List<MutatedRegExp> allMutatedRegExps = new ArrayList<MutatedRegExp>();
+
+	/**
+	 * This only shuffle the mutants with the same mutation type, and all mutants with the same type are adjacent to each other.
+	 * E.g. [CC-2, CC-1, CC-3, M2C-1, M2C-4,M2C-3,M2C-2, .......]
+	 * @param re the regexp need to be tested.
+	 * @return mutated expression with random mutation position for each mutation type.
+	 */
+	public Iterator<MutatedRegExp> mutateSameTypeRandom(RegExp re) {
+		List<Iterator<MutatedRegExp>> allIterator = new ArrayList<>();
 		for (RegexMutator m : allMutators) {
-			//System.out.println("double mutate " + mut + "with " + m.getClass());
-			MutatedRegExp secondMutatedRegExp = m.mutateSingle(mut.mutatedRexExp);
-			if (secondMutatedRegExp != null) {
-				secondMutatedRegExp.description = mut.description + "+" + m.getCode();
-				allMutatedRegExps.add(secondMutatedRegExp);
-			}
+			allIterator.add(m.mutateRandom(re));
 		}
-		//System.out.println(allMutatedRegExps);
-		return allMutatedRegExps.iterator();
+		JoinedIterator<MutatedRegExp> joinedIterator = new JoinedIterator<MutatedRegExp>(allIterator);
+		return joinedIterator;
 	}
-	
+
+
+	@Override
+	public Iterator<MutatedRegExp> secondMutate(MutatedRegExp mut) {
+		List<Iterator<MutatedRegExp>> allIterator = new ArrayList<>();
+		for (RegexMutator m : allMutators) {
+			//System.out.println("----->Current State: " + m.getClass() + " mutate <------");
+			allIterator.add(m.secondMutate(mut));
+			//System.out.println("----->Current State: " + m.getClass() + " mutate finished<------");
+		}
+		JoinedIterator<MutatedRegExp> joinedIterator = new JoinedIterator<MutatedRegExp>(allIterator);
+		return joinedIterator;
+	}
+
 	public Iterator<MutatedRegExp> doubleMutate(RegExp re) {
 		//System.out.println("----->Current State: Double mutate <------");
 		List<Iterator<MutatedRegExp>> allMutatedExpIterator = new ArrayList<>();
+
 		//System.out.println("----->Current State: First mutate<------");
-		Iterator<MutatedRegExp> mutatedExpIterator = mutate(re);
+		//Shuffle mutants for later randomly selection.
+		Iterator<MutatedRegExp> mutatedExpIterator = mutateSameTypeRandom(re);
 		//System.out.println("----->Current State: First mutate Finished<------");
+
+		// add first mutated regexps to the list
 		List<MutatedRegExp> firstMutatedRegExps = new ArrayList<MutatedRegExp>();
-		
-		String lastMutateType = "";
-		Random rnd = new Random();
+		while (mutatedExpIterator.hasNext()) {
+			firstMutatedRegExps.add(mutatedExpIterator.next());
+		}
+		// select mutants to perform second mutation.
+		List<MutatedRegExp> selectedFirstMutants = selectMutantsForSecondMutation(firstMutatedRegExps);
+
 		disable("CC2G");
 		disable("NCCO");
 		disable("QC");
 		disable("NA");
-		int sameTypeCount = 0;
-		while (mutatedExpIterator.hasNext()) {
-			MutatedRegExp mutatedRegExp = mutatedExpIterator.next();
-			//System.out.println("double" + mutatedRegExp);
-			String currentMutateType = mutatedRegExp.description;
-			int count = 1;
-			firstMutatedRegExps.add(mutatedRegExp);
-			//System.out.println("mute: " + mutatedRegExp);
-			
-			if (lastMutateType.equals("")) {
-				lastMutateType = currentMutateType;
-			} else if (!lastMutateType.equals(currentMutateType)) {
-				sameTypeCount = 0;
-				lastMutateType = currentMutateType;
-			} else if (lastMutateType.equals(currentMutateType) && sameTypeCount >= 5) {
-				continue;
-			}
-			boolean mutate = rnd.nextBoolean();
-			//System.out.println(mutatedRegExp);
-			if (mutatedRegExp.description.equals("CC2G")) {
+		for (MutatedRegExp selectedFirstMutant: selectedFirstMutants ) {
+			if (selectedFirstMutant.description.equals("CC2G")) {
 				//System.out.println("CC2G " + mutatedRegExp);
-				mutate = true;
 				disable("CCC");
-			} else if (mutatedRegExp.description.equals("CC") || mutatedRegExp.description.equals("CA")) {
+			} else if (selectedFirstMutant.description.equals("CC") || selectedFirstMutant.description.equals("CA")) {
 				disable("CC");
 				disable("CA");
 				disable("CCR");
-			} else if (mutatedRegExp.description.equals("M2C") || mutatedRegExp.description.equals("C2M")) {
+			} else if (selectedFirstMutant.description.equals("M2C") || selectedFirstMutant.description.equals("C2M")) {
 				disable("M2C");
-				disable("C2M");	
-			} else if (mutatedRegExp.description.equals("CCC")) {
+				disable("C2M");
+			} else if (selectedFirstMutant.description.equals("CCC")) {
 				disable("CCC");
-			} else if (mutatedRegExp.description.equals("CCA") || mutatedRegExp.description.equals("CCR") || mutatedRegExp.description.equals("RM")){
+			} else if (selectedFirstMutant.description.equals("CCA") || selectedFirstMutant.description.equals("CCR") || selectedFirstMutant.description.equals("RM")){
 				disable("CCA");
 				disable("CC");
 				disable("CA");
 				disable("CCR");
 				disable("PA");
 				disable("RM");
-			} else if (mutatedRegExp.description.equals("CCM")) {
+			} else if (selectedFirstMutant.description.equals("CCM")) {
 				disable("CCM");
 				disable("CCN");
 				disable("UR");
-			} else if (mutatedRegExp.description.equals("CCN")) {
+			} else if (selectedFirstMutant.description.equals("CCN")) {
 				disable("CCM");
 				disable("CCN");
 				disable("NA");
 				disable("UR");
-			} else if (mutatedRegExp.description.equals("NCCO")) {
+			} else if (selectedFirstMutant.description.equals("NCCO")) {
 				disable("NCCO");
 				disable("QC");
-			} else if (mutatedRegExp.description.equals("NA") || mutatedRegExp.description.equals("PA")) {
+			} else if (selectedFirstMutant.description.equals("NA") || selectedFirstMutant.description.equals("PA")) {
 				disable("NA");
 				disable("PA");
 				disable("UR");
-			} else if (mutatedRegExp.description.equals("QC")) {
+			} else if (selectedFirstMutant.description.equals("QC")) {
 				disable("QC");
-			} else if (mutatedRegExp.description.equals("UR")) {
+			} else if (selectedFirstMutant.description.equals("UR")) {
 				disable("UR");
 			} else {
 				allMutators.clear();
 			}
-			if (mutate) {
-				//System.out.println("double mute: " + mutatedRegExp);
-				Iterator<MutatedRegExp> doubleMutatedExpIterator = secondMutate(mutatedRegExp);
-				allMutatedExpIterator.add(doubleMutatedExpIterator);
-				sameTypeCount++;
-			}
+			//System.out.println("double mute: " + mutatedRegExp);
+			Iterator<MutatedRegExp> doubleMutatedExpIterator = secondMutate(selectedFirstMutant);
+			allMutatedExpIterator.add(doubleMutatedExpIterator);
 		}
+
+
 		allMutatedExpIterator.add(firstMutatedRegExps.iterator());
 		//System.out.println(allMutatedExpIterator.size());
 		JoinedRandomIterator<MutatedRegExp> joinedRandomIterator = new JoinedRandomIterator<MutatedRegExp>(allMutatedExpIterator);
 		//System.out.println("----->Current State: Double mutate Finished<------");
 		return joinedRandomIterator;
 	}
-	
+
+	private List<MutatedRegExp> selectMutantsForSecondMutation(List<MutatedRegExp> firstMutatedRegExps) {
+		final double RATE = 0.75;
+		//Count the number of mutants of each mutation type.
+		List<Integer> numOfMutants = new ArrayList<>();
+		String lastMutantType = "";
+		for (MutatedRegExp mutant: firstMutatedRegExps) {
+			if (mutant.description.equals(lastMutantType)) {
+				int previousNum = numOfMutants.get(numOfMutants.size() - 1);
+				numOfMutants.set(numOfMutants.size() - 1, previousNum + 1);
+			} else {
+				numOfMutants.add(1);
+				lastMutantType = mutant.description;
+			}
+		}
+		//Select mutants based on the rate.
+		List<MutatedRegExp> result = new ArrayList<>();
+		int currentIndex = 0;
+		int typeCount = 0;
+
+		while (currentIndex < firstMutatedRegExps.size()) {
+			int totalNumOfMutantsForCurrentType = numOfMutants.get(typeCount);
+			// Make sure at lease one mutant for each existing type will be selected.
+			int requiredNumOfMutantsForCurrentType = (int) Math.ceil(totalNumOfMutantsForCurrentType * RATE);
+
+			result.addAll(firstMutatedRegExps.subList(currentIndex, currentIndex + requiredNumOfMutantsForCurrentType));
+			currentIndex = currentIndex + totalNumOfMutantsForCurrentType;
+			typeCount++;
+		}
+		return result;
+	}
+
 
 	private static void add(RegexMutator mutator) {
 		allMutators.add(mutator);

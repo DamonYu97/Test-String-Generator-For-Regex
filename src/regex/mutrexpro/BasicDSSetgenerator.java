@@ -23,24 +23,24 @@ import regex.operators.RegexMutator.MutatedRegExp;
 /**
  * generates a ds for each mutation and then it collects the ds and keeps track
  * if one kills many
- * 
+ *
  * @author garganti
  *
  */
 public class BasicDSSetgenerator extends DSSetGenerator {
-	
+
 	private DSgenPolicy policy;
-	
+
 	public static DSSetGenerator generator = new BasicDSSetgenerator(DSgenPolicy.RANDOM);
 
 	public static DSSetGenerator generatorPOS = new BasicDSSetgenerator(DSgenPolicy.PREF_POSITIVE);
 
 	public static DSSetGenerator generatorNEG = new BasicDSSetgenerator(DSgenPolicy.PREF_NEGATIVE);
-	
+
 	protected BasicDSSetgenerator() {
 		this(DSgenPolicy.RANDOM);
 	}
-	
+
 	protected BasicDSSetgenerator(DSgenPolicy policy) {
 		this.policy = policy;
 	}
@@ -54,7 +54,7 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 		AllMutators.mutator.allMutants.clear();
 		int count = 0;
 		while (mutants.hasNext()) {
-			
+
 			//double time = System.currentTimeMillis();
 			MutatedRegExp mutant = mutants.next();
 			//System.out.println(mutant);
@@ -68,12 +68,12 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 			if (ds != null) {
 				result.add(ds, Collections.singletonList(mutant));
 			}
-			
+
 			/*ExecutorService executorService= Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()*2);
 			Future<String> future = executorService.submit(new Callable<String>() {
 	            @Override
 	            public String call() {
-	            	
+
 	                return  "OK";
 	            }
 	        });
@@ -83,7 +83,7 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 	            future.cancel(true);
 	            System.out.println(mutant);
 	        } finally {
-	        	
+
 	        	executorService.shutdown();
 	        }*/
 	        /*time = System.currentTimeMillis() - time;
@@ -91,11 +91,10 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 				System.out.println("time: " + time + " \t"+ mutant);
 			}*/
 		}
-		
-		AllMutators.mutator.setTotalCount(count);
+
 		return;
 	}
-	
+
 	private char getNicerChar(String s) {
 		if (s == null) {
 			return '^';
@@ -105,7 +104,7 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 		boolean[] special = new boolean[14];
 		//Initialise special
 		for (int i = 0; i < special.length; i++) {
-			special[i] = false; 
+			special[i] = false;
 		}
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
@@ -119,7 +118,7 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 				}
 			}
 		}
-		
+
 		if (!hasLetter) {
 			return 'A';
 		} else if (!hasDigit) {
@@ -132,6 +131,6 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 			}
 		}
 		return '^';
-		
+
 	}
 }

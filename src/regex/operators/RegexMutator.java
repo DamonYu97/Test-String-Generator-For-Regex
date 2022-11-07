@@ -12,14 +12,14 @@ import dk.brics.automaton.ToSimpleString;
 import dk.brics.automaton.oo.ooregex;
 
 /**
- * 
+ *
  * @modified by Yu Lilin at 2020.03.27
  *
  */
 public abstract class RegexMutator {
 
 	private RegexVisitorAdapterList mutator;
-	
+
 	public RegexVisitorAdapterList getMutator() {
 		return mutator;
 	}
@@ -36,16 +36,39 @@ public abstract class RegexMutator {
 	public Iterator<MutatedRegExp> mutateRandom(RegExp re) {
 		return mutate(re, true);
 	}
-	
-	//modified by Yu Lilin
+
+	public Iterator<MutatedRegExp> secondMutate(MutatedRegExp re) {
+		//mutate
+		List<ooregex> results = OORegexConverter.getOORegex(re.mutatedRexExp).accept(mutator);
+
+		// randomly select first n * RATE mutants from the results.
+		Collections.shuffle(results);
+		final double RATE = 0.25;
+		int requiredNumOfMutants = (int) Math.ceil(results.size() * RATE);
+		results = results.subList(0, requiredNumOfMutants);
+
+		final Iterator<ooregex> resultsOO = results.iterator();
+		return new Iterator<MutatedRegExp>() {
+
+			@Override
+			public boolean hasNext() {
+				return resultsOO.hasNext();
+			}
+
+			@Override
+			public MutatedRegExp next() {
+				RegExp s = OORegexConverter.convertBackToRegex(resultsOO.next());
+				// return new
+				// MutatedRegExp(mutator.getClass().getEnclosingClass().getSimpleName(),
+				// new RegExp(s));
+				return new MutatedRegExp(re.description + "+" +  mutator.getCode(), s);
+			}
+		};
+	}
+
+
 	private Iterator<MutatedRegExp> mutate(RegExp re, boolean shuffle) {
 		List<ooregex> results = OORegexConverter.getOORegex(re).accept(mutator);
-		//modified
-		//if it is M2C, then only last mutated expression makes sense
-		//int size = results.size();
-		/*if (size > 0 && (mutator.getCode().equals("M2C") || mutator.getCode().equals("C2M"))) {
-			results.subList(0, size - 1).clear();
-		} */
 
 		if (shuffle) {
 			Collections.shuffle(results);
@@ -69,24 +92,7 @@ public abstract class RegexMutator {
 			}
 		};
 	}
-	
-	//make sure any mutator only generate one mutated expression, if more than one expressions,
-	//then randomly choose one from them. Added by Yu Lilin
-	public MutatedRegExp mutateSingle(RegExp re) {
-		List<ooregex> results = OORegexConverter.getOORegex(re).accept(mutator);
-		int size = results.size();
-		if (size == 0) {
-			return null;
-		} else if (size == 1) {
-			RegExp s = OORegexConverter.convertBackToRegex(results.get(0));
-			return new MutatedRegExp(mutator.getCode(), s);
-		} else {
-			Random rnd = new Random();
-			int selectedPos = rnd.nextInt(size);
-			RegExp s = OORegexConverter.convertBackToRegex(results.get(selectedPos));
-			return new MutatedRegExp(mutator.getCode(), s);
-		}
-	}
+
 
 	static public class MutatedRegExp {// extends RegExp{
 		public String description;
