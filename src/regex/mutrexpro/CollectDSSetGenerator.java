@@ -29,7 +29,7 @@ import regex.operators.RegexMutator.MutatedRegExp;
 
 /**
  * generates a ds that tries to kill as many mutants as possible
- * 
+ *
  * @author garganti
  *
  */
@@ -43,7 +43,7 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 		//Automaton rexAut = regex.toAutomaton();
 		RegexWAutomata r = new RegexWAutomata(regex);
 		List<DistinguishingAutomaton> das = new ArrayList<>();
-		
+
 		Automaton regexAut = regex.toAutomaton();
 		String baseString = regexAut.getShortestExample(true);
 		final char nicerChar = getNicerChar(baseString);
@@ -103,7 +103,7 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 				}
 	        } catch (InterruptedException | ExecutionException | TimeoutException e) {
 	            future.cancel(true);
-	            
+
 	        } finally {
 	        	executorService.shutdown();
 	        }
@@ -141,7 +141,7 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 	}
 
 	abstract boolean stop(DistinguishingAutomaton da);
-	
+
 	private char getNicerChar(String s) {
 		if (s == null) {
 			return '^';
@@ -151,7 +151,7 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 		boolean[] special = new boolean[14];
 		//Initialise special
 		for (int i = 0; i < special.length; i++) {
-			special[i] = false; 
+			special[i] = false;
 		}
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
@@ -165,7 +165,7 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 				}
 			}
 		}
-		
+
 		if (!hasLetter) {
 			return 'A';
 		} else if (!hasDigit) {
@@ -178,6 +178,6 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 			}
 		}
 		return '^';
-		
+
 	}
 }

@@ -12,15 +12,15 @@ import dk.brics.automaton.oo.ooregex;
 import dk.brics.automaton.oo.oosimpleexp;
 
 /**
- * 
+ *
  * @author Yu Lilin
  * @data 2020.03.10
- * 
- * The operation CharacterClass2Concatenation transforms a regular expression r contains u 
+ *
+ * The operation CharacterClass2Concatenation transforms a regular expression r contains u
  * interpreted as a character class to a regular expression r' in which u is interpreted as
  * a concatenation. i.e. transform [] to ()
  * e.g. [abc] ---> (abc)
- * 
+ *
  */
 public class CharacterClass2Group extends RegexMutator {
 	public static CharacterClass2Group mutator = new CharacterClass2Group();
@@ -28,15 +28,15 @@ public class CharacterClass2Group extends RegexMutator {
 	private CharacterClass2Group() {
 		super(new CharacterClass2SimpleexpVisitor());
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * A subclass to visit regular expressions
-	 * Change [] to () 
+	 * Change [] to ()
 	 * i.e. return concatenation when visit union, range, and negated class
 	 */
 	static class CharacterClass2SimpleexpVisitor extends RegexVisitorAdapterList {
-		
+
 		/**
 		 * If visit a character class, return a concatenation of elements in this class
 		 */
@@ -47,22 +47,22 @@ public class CharacterClass2Group extends RegexMutator {
 			if (newExpString == null) {
 				return Collections.EMPTY_LIST;
 			}
+			if (newExpString.charAt(0) == '\\' && newExpString.length() == 2) {
+				return Collections.EMPTY_LIST;
+			}
 			try {
 				//construct a new regular expression according to newExpString
 				ooregex newRE = OORegexConverter.getOOExtRegex(newExpString);
 				//System.out.println(newExpString);
-				if (newExpString.charAt(0) == '\\' && newExpString.length() == 2) {
-					return Collections.EMPTY_LIST;
-				}
 				return Collections.singletonList((ooregex) newRE);
 			} catch (Exception e) { 
 				System.out.println(e.getMessage());
 			}
 			return Collections.EMPTY_LIST;
 		}
-		
+
 		/**
-		 * 
+		 *
 		 * @param REGEXP_UNION r
 		 * @return a {@code String} indicates r's original form without brackets
 		 */
@@ -85,9 +85,9 @@ public class CharacterClass2Group extends RegexMutator {
 			}
 			return newExpString;
 		}
-		
+
 		/**
-		 * if visit a single range like [a-z], return a simple expression "a-z" 
+		 * if visit a single range like [a-z], return a simple expression "a-z"
 		 */
 		@Override
 		public List<ooregex> visit(REGEXP_CHAR_RANGE r) {
@@ -96,7 +96,7 @@ public class CharacterClass2Group extends RegexMutator {
 			ooregex simpleexp = oosimpleexp.createoosimpleexp(simpleString);
 			return Collections.singletonList((ooregex) simpleexp);
 		}
-		
+
 		/**
 		 * If visit a negated character class, return a concatenation of elements in this class
 		 */
@@ -117,26 +117,26 @@ public class CharacterClass2Group extends RegexMutator {
 					ooregex simpleexp = oosimpleexp.createoosimpleexp(newExpString);
 					return Collections.singletonList((ooregex) simpleexp);
 				} else { // [^abc]
-					newExpString = toConcatenationString((REGEXP_UNION)ncc); 
-					
+					newExpString = toConcatenationString((REGEXP_UNION)ncc);
+
 					if (newExpString == null) {
 						return Collections.EMPTY_LIST;
-					} 
+					}
 					newExpString = "^" + newExpString; //^abc
 					//System.out.println(newExpString);
 					try {
 						//construct a new regular expression according to conString
 						ooregex re = OORegexConverter.getOOExtRegex(newExpString);
 						return Collections.singletonList((ooregex) re);
-					} catch (Exception e) { 
+					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
 				}
-			} 
-			
+			}
+
 			return Collections.EMPTY_LIST;
-		}	
-		
+		}
+
 		@Override
 		public String getCode() {
 			return "CC2G";
