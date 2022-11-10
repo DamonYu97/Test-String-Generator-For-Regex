@@ -112,7 +112,6 @@ abstract class CollectDSSetGenerator extends DSSetGenerator {
 				System.out.println("time: " + time + " \t"+ mutant);
 			}
 		}
-		AllMutators.mutator.setTotalCount(count);
 		// now get the remaining DS
 		for (DistinguishingAutomaton da : das) {
 			genTest(result, da);

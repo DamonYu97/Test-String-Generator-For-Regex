@@ -91,8 +91,7 @@ public class BasicDSSetgenerator extends DSSetGenerator {
 				System.out.println("time: " + time + " \t"+ mutant);
 			}*/
 		}
-		
-		AllMutators.mutator.setTotalCount(count);
+
 		return;
 	}
 	

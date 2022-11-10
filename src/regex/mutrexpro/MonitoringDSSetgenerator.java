@@ -59,7 +59,7 @@ public class MonitoringDSSetgenerator extends DSSetGenerator {
 				}
 			}
 			//generation
-			DistinguishingString ds = DistStringCreator.getDS(regexAut, mutAutom, DSgenPolicy.PREF_NEGATIVE, nicerChar);
+			DistinguishingString ds = DistStringCreator.getDS(regexAut, mutAutom, DSgenPolicy.ONLY_NEGATIVE, nicerChar);
 			//System.out.println("ds: " + ds);
 			if (ds != null) {
 				assert ds.isConfirming() == regexAut.run(ds.getDs());

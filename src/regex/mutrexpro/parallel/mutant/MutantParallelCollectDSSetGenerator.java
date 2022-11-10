@@ -37,11 +37,9 @@ public class MutantParallelCollectDSSetGenerator extends DSSetGenerator {
 				continue;
 			} else {
 				numRunningMutants++;
-				AllMutators.mutator.setTotalCount(count + AllMutators.mutator.getTotalCount());
 				return new MutantForMutParallelCollector(mutants.next());
 			}
 		}
-		AllMutators.mutator.setTotalCount(count + AllMutators.mutator.getTotalCount());
 		return null;
 	}
 

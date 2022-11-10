@@ -22,7 +22,7 @@ public class UnionRestrictionTest {
 	
 	@Test
 	public void testMutateMix() {
-		RegExp re1 = new RegExp("abcde[a-z]|bef");
+		RegExp re1 = new RegExp("(ab|[0-9]de(xy)*)");
 		//ooregex oore1 = OORegexConverter.getOORegex(re1);
 		List<MutatedRegExp> m1 = IteratorUtils.iteratorToList(mutator.mutateRandom(re1));
 		System.out.println(m1);
