@@ -186,6 +186,7 @@ public class AllMutators extends RegexMutator {
 				disable("QC");
 			} else if (selectedFirstMutant.description.equals("NA") || selectedFirstMutant.description.equals("PA")) {
 				disable("NA");
+				disable("CCN");
 				disable("PA");
 				disable("UR");
 			} else if (selectedFirstMutant.description.equals("QC")) {
@@ -210,6 +211,7 @@ public class AllMutators extends RegexMutator {
 
 	private List<MutatedRegExp> selectMutantsForSecondMutation(List<MutatedRegExp> firstMutatedRegExps) {
 		final double RATE = 0.75;
+		final int MAX = 5;
 		//Count the number of mutants of each mutation type.
 		List<Integer> numOfMutants = new ArrayList<>();
 		String lastMutantType = "";
@@ -231,7 +233,9 @@ public class AllMutators extends RegexMutator {
 			int totalNumOfMutantsForCurrentType = numOfMutants.get(typeCount);
 			// Make sure at lease one mutant for each existing type will be selected.
 			int requiredNumOfMutantsForCurrentType = (int) Math.ceil(totalNumOfMutantsForCurrentType * RATE);
-
+			if (requiredNumOfMutantsForCurrentType > MAX) {
+				requiredNumOfMutantsForCurrentType = MAX;
+			}
 			result.addAll(firstMutatedRegExps.subList(currentIndex, currentIndex + requiredNumOfMutantsForCurrentType));
 			currentIndex = currentIndex + totalNumOfMutantsForCurrentType;
 			typeCount++;

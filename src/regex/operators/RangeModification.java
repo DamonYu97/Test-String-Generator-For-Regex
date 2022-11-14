@@ -1,6 +1,7 @@
 package regex.operators;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import dk.brics.automaton.oo.REGEXP_CHAR_RANGE;
@@ -9,7 +10,7 @@ import dk.brics.automaton.oo.ooregex;
 /**
  * the user has used a char range but has a wrong boundary (but the new
  * mutation will be a char again)
- * 
+ *
  * In MUTATION 2017 is RM
  *
  */
@@ -23,7 +24,27 @@ public class RangeModification extends RegexMutator {
 	static class RangeModificationVisitor extends RegexVisitorAdapterList {
 
 		@Override
+		public void init() {
+			allDistinctCharRanges = new ArrayList<>();
+		}
+
+		private List<REGEXP_CHAR_RANGE> allDistinctCharRanges;
+
+		// Check if a char range exists before.
+		private boolean exists(REGEXP_CHAR_RANGE r) {
+			if (!allDistinctCharRanges.contains(r)) {
+				allDistinctCharRanges.add(r);
+				return false;
+			}
+
+			return true;
+		}
+
+		@Override
 		public List<ooregex> visit(REGEXP_CHAR_RANGE r) {
+			if (exists(r)) {
+				return Collections.EMPTY_LIST;
+			}
 			List<ooregex> result = new ArrayList<ooregex>();
 			char[] fromV = vary(r.from);
 			char[] toV = vary(r.to);

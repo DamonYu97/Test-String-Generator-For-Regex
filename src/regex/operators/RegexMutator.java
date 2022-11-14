@@ -39,6 +39,7 @@ public abstract class RegexMutator {
 
 	//modified by Yu Lilin
 	private Iterator<MutatedRegExp> mutate(RegExp re, boolean shuffle) {
+		mutator.init();
 		List<ooregex> results = OORegexConverter.getOORegex(re).accept(mutator);
 		//modified
 		//if it is M2C, then only last mutated expression makes sense
@@ -71,13 +72,18 @@ public abstract class RegexMutator {
 	}
 
 	public Iterator<MutatedRegExp> secondMutate(MutatedRegExp re) {
+		mutator.init();
 		//mutate
 		List<ooregex> results = OORegexConverter.getOORegex(re.mutatedRexExp).accept(mutator);
 
 		// randomly select first n * RATE mutants from the results.
 		Collections.shuffle(results);
 		final double RATE = 0.25;
+		final int MAX = 3;
 		int requiredNumOfMutants = (int) Math.ceil(results.size() * RATE);
+		if (requiredNumOfMutants > MAX) {
+			requiredNumOfMutants = MAX;
+		}
 		results = results.subList(0, requiredNumOfMutants);
 
 		final Iterator<ooregex> resultsOO = results.iterator();
