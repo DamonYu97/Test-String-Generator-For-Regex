@@ -16,9 +16,9 @@ public class Simulator {
 		//192.168.142.1(02|12)
 		Scanner in = new Scanner(System.in);
 		//get the type of generation technique
-		GeneratorType type = GeneratorType.BASIC; //default type
+		GeneratorType type = GeneratorType.MONITORING; //default type
 		System.out.println("Choose a generation technique:");
-		System.out.println("1: Basic(default), 2: Monitoring, 3: Parallel Collecting");
+		System.out.println("1: Basic, 2: Monitoring(default), 3: Parallel Collecting");
 		if (in.hasNextInt()) {
 			int typeNum = in.nextInt();
 			switch (typeNum) {
@@ -44,7 +44,7 @@ public class Simulator {
 			try {
 				DSSet x = new DSSet();
 				//generate test strings
-				x = MutRexPro.generateStrings(regexString, type);
+				x = MutRexPro.generateStrings(regexString, type, GeneratorType.Orientation.PREF_REJECT);
 				Iterator<DistinguishingString> it = x.iterator();
 				String acceptedStringsInfo = "";
 				String rejectedStringsInfo = "";
@@ -76,7 +76,7 @@ public class Simulator {
 			}
 			System.out.println("\nEnter a regular expression:");
 		}
-		
+
 	}
 
 }
